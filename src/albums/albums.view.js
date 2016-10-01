@@ -9,7 +9,10 @@ export default class AlbumsView {
   }
 
   render(albums) {
-    this.element.innerHTML = albumsTemplate(albums);
+    return new Promise((resolve, reject) => {
+      this.element.innerHTML = albumsTemplate(albums);
+      resolve();
+    });
   }
 
 }

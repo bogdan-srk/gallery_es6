@@ -54,10 +54,6 @@ export default class AlbumsModel {
   constructor() {
     this._albums = [];
     this._readData();
-
-    // this._albums = albums;
-    // this._saveData();
-
   }
 
   _saveData() {
@@ -84,6 +80,11 @@ export default class AlbumsModel {
 
   removePhoto(albumId, photoId){
     delete this._albums[albumId].photos[photoId];
+    this._saveData();
+  }
+
+  removeAlbum(albumId){
+    delete this._albums[albumId];
     this._saveData();
   }
 }

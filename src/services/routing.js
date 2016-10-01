@@ -5,7 +5,6 @@ export default class Routing {
 
   constructor() {
 
-
     window.addEventListener('hashchange', () => this._handleRoute());
     this._routes = {
       '': () => {

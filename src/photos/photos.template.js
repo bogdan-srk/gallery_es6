@@ -9,7 +9,7 @@ let photosTemplate = album => {
           return Util.html`
             <li id='${photo._id}'>
                 <p>${photo.title}</p>
-                <button class=".remove-photo">Remove</button>
+                <button class="remove-photo">Remove</button>
             </li>`
         }
       })

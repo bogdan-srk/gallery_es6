@@ -2,8 +2,8 @@ import Util from '../services/util'
 
 let photosTemplate = album => {
   return Util.html`
-    <h3>${album.title}</h3>
-    <ul>
+    <h3 rendered>${album.title}</h3>
+    <ul rendered class="photos-list">
         ${album.photos.map(photo => {
         if (photo !== null) {
           return Util.html`

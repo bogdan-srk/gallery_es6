@@ -7,10 +7,20 @@ export default class PhotosController {
 
     this.albumsModel = new AlbumsModel();
 
-    let photosView = new PhotosView(this);
+    this._photosView = new PhotosView(this);
+    this._renderView();
+  }
+
+  _removePhoto(albumId, photoId) {
+    this.albumsModel.removePhoto(albumId, photoId).then(() => {
+      this._renderView();
+    });
+  }
+
+  _renderView(){
     let album = this.albumsModel.albumById(decodeURI(window.location.hash).split('/')[1]);
 
-    photosView.render(album)
+    this._photosView.render(album)
       .then(() => {
         let removeButtons = document.getElementsByClassName('remove-photo');
         Array.from(removeButtons).forEach((button) => {
@@ -21,10 +31,6 @@ export default class PhotosController {
           });
         });
       });
-  }
-
-  _removePhoto(albumId, photoId) {
-    this.albumsModel.removePhoto(albumId, photoId);
   }
 
 }

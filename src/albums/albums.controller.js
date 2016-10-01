@@ -6,22 +6,47 @@ export default class AlbumsController {
     console.log('Albums Controller');
 
     this.albumsModel = new AlbumsModel();
+    this._albumView = new AlbumView();
 
-    let albumView = new AlbumView();
+    this._renderView();
+  }
 
-    albumView.render(this.albumsModel.albums())
+  _setRemoveListeners() {
+    let removeButtons = document.getElementsByClassName('remove-album');
+    Array.from(removeButtons).forEach((button) => {
+      button.addEventListener('click', () => {
+        let albumId = button.parentElement.getAttribute('id');
+        this._removeAlbum(albumId);
+      });
+    });
+  }
+
+  _setCreateListener() {
+    let createButton = document.getElementsByClassName('album-create-button')[0];
+    let createInput = document.getElementsByClassName('album-create-input')[0];
+
+    createButton.addEventListener('click', () => {
+      console.log(createInput.value);
+      this.albumsModel.createAlbum(createInput.value).then(() => {
+        createInput.value = '';
+        this._renderView();
+      });
+
+    });
+  }
+
+  _removeAlbum(albumId) {
+    this.albumsModel.removeAlbum(albumId)
       .then(() => {
-        let removeButtons = document.getElementsByClassName('remove-album');
-        Array.from(removeButtons).forEach((button) => {
-          button.addEventListener('click', () => {
-            let albumId = button.parentElement.getAttribute('id');
-            this._removeAlbum(albumId);
-          });
-        });
+        this._renderView();
       });
   }
 
-  _removeAlbum(albumId){
-    this.albumsModel.removeAlbum(albumId)
+  _renderView() {
+    this._albumView.render(this.albumsModel.albums())
+      .then(() => {
+        this._setRemoveListeners();
+        this._setCreateListener();
+      });
   }
 }

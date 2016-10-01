@@ -78,13 +78,35 @@ export default class AlbumsModel {
     return this._albums[id];
   }
 
+  createAlbum(title){
+    return new Promise((resolve, reject) =>{
+      if (title != ''){
+        this._albums.push({
+          _id: this._albums.length,
+          title,
+          photos: []
+        });
+        this._saveData();
+        resolve();
+      } else {
+        reject({msg: 'Title cannot be empty'})
+      }
+    });
+  }
+
   removePhoto(albumId, photoId){
-    delete this._albums[albumId].photos[photoId];
-    this._saveData();
+    return new Promise((resolve, reject) => {
+      delete this._albums[albumId].photos[photoId];
+      this._saveData();
+      resolve();
+    });
   }
 
   removeAlbum(albumId){
-    delete this._albums[albumId];
-    this._saveData();
+    return new Promise((resolve, reject) => {
+      delete this._albums[albumId];
+      this._saveData();
+      resolve();
+    })
   }
 }

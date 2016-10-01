@@ -10,6 +10,10 @@ export default class PhotosView {
 
   render(album) {
     return new Promise((resolve, reject) => {
+      let rendered = document.querySelectorAll('rendered');
+      if (rendered.length > 0){
+        Array.from(rendered).forEach((element) => element.remove());
+      }
       this.element.innerHTML += photosTemplate(album);
       resolve();
     });

@@ -28,33 +28,13 @@ export default class Routing {
       insertTemplate('not-found');
     }
   };
-
-  /*route(url) {
-
-    let hash = url.split('/')[0];
-
-    let routes = {
-      '': () => {
-        insertTemplate('albums');
-      },
-      '#album': () => {
-        console.log(url.split('#album/'));
-        let index = url.split('#album/')[1].trim();
-        document.getElementById('app').innerHTML = `<h1>Album #${index} </h1>`;
-        insertTemplate('photos');
-      }
-    };
-
-
-
-  }*/
 }
 
 let insertTemplate = (routeName) => {
   let getLink = (name) => `link[rel="import"].${name}-import`;
   let templates = {
     'albums': {link: getLink('albums'), element: '#albums', controller: AlbumsController},
-    'photos': {link: getLink('photos'), element: '#photos', controller: ''},
+    'photos': {link: getLink('photos'), element: '#photos', controller: PhotosController},
     'not-found': {link: getLink('not-found'), element: '#not-found'}
   };
 

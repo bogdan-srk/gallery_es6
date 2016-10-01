@@ -1,9 +1,22 @@
 export default class Util {
-  static documentReady(fn) {
-    if (document.readyState != 'loading'){
-      fn();
-    } else {
-      document.addEventListener('DOMContentLoaded', fn);
-    }
-  }
+
+  static html (literal, ...cooked){
+    let result = '';
+
+    cooked.forEach((cook, i) => {
+      let lit = literal[i];
+
+      if (Array.isArray(cook)) {
+        cook = cook.join('');
+      }
+
+      result += lit;
+      result += cook;
+    });
+
+    result += literal[literal.length - 1];
+
+    return result;
+  };
+
 }

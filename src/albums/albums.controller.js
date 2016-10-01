@@ -1,17 +1,13 @@
-import AlbumsModel from './albums.model'
+import AlbumsModel from '../services/albums.model'
 import AlbumView from './albums.view'
 
 export default class AlbumsController {
   constructor() {
-    console.log('Albums COntroller');
+    console.log('Albums Controller');
 
-    let albums = new AlbumsModel();
-    //
-    // albums.add('added');
-    // albums.remove(4);
-    // console.log(albums.all());
+    let albumsModel = new AlbumsModel();
 
     let albumView = new AlbumView();
-    albumView.render(albums.all());
+    albumView.render(albumsModel.albums());
   }
 }

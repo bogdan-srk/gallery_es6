@@ -2,7 +2,7 @@ import Util from '../services/util'
 
 let albumsTemplate = albums => {
   return Util.html`
-    <ul>
+    <ul class="albums-list">
         ${albums.map(album => {
             if (album !== null){
               return Util.html`

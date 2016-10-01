@@ -10,7 +10,11 @@ export default class AlbumsView {
 
   render(albums) {
     return new Promise((resolve, reject) => {
-      this.element.innerHTML = albumsTemplate(albums);
+      let albumsList = document.getElementsByClassName('albums-list')[0];
+      if (albumsList) {
+        albumsList.remove();
+      }
+      this.element.innerHTML += albumsTemplate(albums);
       resolve();
     });
   }

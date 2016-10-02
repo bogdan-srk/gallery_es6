@@ -21,7 +21,6 @@ export default class Util {
 
   static count(arr){
     return Array.from(arr).reduce((count, element) => {
-      console.log(count);
       if (element !== undefined && element !== null) {count++}
       return count;
     }, 0);

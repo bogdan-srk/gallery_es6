@@ -1,9 +1,10 @@
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
     './src/main',
-    './src/stl.less',
+    './src/style.less',
     'webpack-dev-server/client?http://localhost:8080'
   ],
   output: {
@@ -20,21 +21,25 @@ module.exports = {
           path.resolve(__dirname, 'src')
         ],
         test: /\.js?$/,
-        exclude: [path.resolve(__dirname, "node_modules")],
+        exclude: [path.resolve(__dirname, 'node_modules')],
         query: {
           presets: ['es2015']
         }
       },
       {
-        loader: "style!css!autoprefixer!less",
+        loader: ExtractTextPlugin.extract('style', 'css!autoprefixer!less'),
         test: /\.less$/
       }
     ]
   },
   watch: true,
   devServer: {
-    contentBase: "./src"
-  }
+    contentBase: './src'
+  },
+  
+  plugins: [
+    new ExtractTextPlugin('style.css')
+  ]
 };
 
 //webpack-dev-server --host 0.0.0.0 --port 8080 --inline

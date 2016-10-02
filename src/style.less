@@ -1,0 +1,114 @@
+html, body {
+  font-family: Arial, sans-serif;
+//  height: 100%;
+//  width: 100%;
+  background: #e8e8e8;
+//  color: aliceblue;
+}
+
+header{
+
+}
+
+.content{
+  margin: 0 auto;
+  width: 80%;
+}
+
+#albums{
+
+  .album-create-input{
+    display: inline-block;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    box-shadow: none;
+    font-size: 1em;
+    padding: 10px;
+    color: #343434;
+    border: solid 1px #dcdcdc;
+    transition: box-shadow 0.3s, border 0.3s;
+  }
+  .album-create-input:focus{
+    border: solid 1px #707070;
+    box-shadow: 0 0 5px 1px #969696;
+    outline: none;
+  }
+
+  .album-create-button{
+    display: inline-block;
+    margin: 0;
+    font-size: 1em;
+    color: #ebebff;
+    padding: 10px;
+    background: #5471a0;
+    border: none;
+  }
+  .album-create-button:hover{
+    cursor: pointer;
+  }
+  .album-create-button:active{
+    background: #425983;
+  }
+  .album-create-button:focus{
+    outline: none;
+  }
+
+  .albums-list{
+    padding: 0;
+
+    .album{
+      position: relative;
+      display: block;
+      padding: 10px 25px;
+      margin-bottom: 20px;
+      background: #5471a0;
+
+      .album-title{
+        font-size: 2em;
+        font-weight: 100;
+        float: left;
+      }
+
+      a{
+        display: inline-block;
+        color: #ebebff;
+        text-decoration: none;
+
+        :hover{
+          cursor: pointer;
+          color: white;
+        }
+
+        :active{
+          top: 1px;
+        }
+      }
+
+      .remove-album{
+        position: absolute;
+        display: block;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        color: #394976;
+        font-size: 1em;
+      }
+      .remove-album:hover{
+        color: #252a4b;
+        cursor: pointer;
+      }
+      .remove-album:active{
+        top: 11px;
+      }
+      .remove-album:focus{
+        outline: none;
+      }
+
+    }
+
+  }
+
+}
+
+#photos{}

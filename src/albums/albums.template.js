@@ -7,7 +7,7 @@ let albumsTemplate = albums => {
             if (album !== null){
               return Util.html`
                 <li id='${album._id}'>
-                    <a href="#album/${album._id}">${album.title}</a>
+                    <a href="#album/${album._id}">${album.title} (${Util.count(album.photos)})</a>
                     <button class="remove-album">Remove</button>
                 </li>`
             }

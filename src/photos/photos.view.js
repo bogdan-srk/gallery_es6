@@ -3,14 +3,13 @@ import PhotosController from './photos.controller';
 
 export default class PhotosView {
 
-  constructor(controller) {
+  constructor() {
     this.element = document.getElementById('photos');
-    this.controller = controller;
   }
 
   render(album) {
     return new Promise((resolve, reject) => {
-      let rendered = document.querySelectorAll('rendered');
+      let rendered = document.querySelectorAll('[rendered]');
       if (rendered.length > 0){
         Array.from(rendered).forEach((element) => element.remove());
       }

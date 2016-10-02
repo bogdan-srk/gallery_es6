@@ -8,6 +8,7 @@ let photosTemplate = album => {
         if (photo !== null) {
           return Util.html`
             <li id='${photo._id}'>
+                <img src="data:image/png;base64,${photo.encoded}">
                 <p>${photo.title}</p>
                 <button class="remove-photo">Remove</button>
             </li>`

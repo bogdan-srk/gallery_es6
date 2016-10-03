@@ -7,14 +7,14 @@ let photosTemplate = album => {
         ${album.photos.map(photo => {
         if (photo !== null) {
           return Util.html`
-            <li id='${photo._id}'>
-                <img src="data:image/png;base64,${photo.encoded}">
-                <p>${photo.title}</p>
-                <button class="remove-photo">Remove</button>
+            <li class="photo" id='${photo._id}'>            
+                <button class="remove-photo">×</button>
+                <img class="photo-image" src="data:image/png;base64,${photo.encoded}">
+                <p class="photo-title">${photo.title}</p>
             </li>`
+            }
+          })
         }
-      })
-    }
     </ul>`;
 };
 

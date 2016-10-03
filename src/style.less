@@ -1,23 +1,37 @@
 html, body {
   font-family: Arial, sans-serif;
-//  height: 100%;
-//  width: 100%;
+  //  height: 100%;
+  //  width: 100%;
   background: #e8e8e8;
-//  color: aliceblue;
+  //  color: aliceblue;
 }
 
-header{
+header {
+  a {
+    display: inline-block;
+    color: #3f3f3f;
+    text-decoration: none;
+
+    :hover {
+      cursor: pointer;
+      color: #000000;
+    }
+
+    :active {
+      top: 1px;
+    }
+  }
 
 }
 
-.content{
+.content {
   margin: 0 auto;
-  width: 80%;
+  width: 85%;
 }
 
-#albums{
+#albums {
 
-  .album-create-input{
+  .album-create-input {
     display: inline-block;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -28,13 +42,13 @@ header{
     border: solid 1px #dcdcdc;
     transition: box-shadow 0.3s, border 0.3s;
   }
-  .album-create-input:focus{
+  .album-create-input:focus {
     border: solid 1px #707070;
     box-shadow: 0 0 5px 1px #969696;
     outline: none;
   }
 
-  .album-create-button{
+  .album-create-button {
     display: inline-block;
     margin: 0;
     font-size: 1em;
@@ -43,48 +57,48 @@ header{
     background: #5471a0;
     border: none;
   }
-  .album-create-button:hover{
+  .album-create-button:hover {
     cursor: pointer;
   }
-  .album-create-button:active{
+  .album-create-button:active {
     background: #425983;
   }
-  .album-create-button:focus{
+  .album-create-button:focus {
     outline: none;
   }
 
-  .albums-list{
+  .albums-list {
     padding: 0;
 
-    .album{
+    .album {
       position: relative;
       display: block;
       padding: 10px 25px;
       margin-bottom: 20px;
       background: #5471a0;
 
-      .album-title{
+      .album-title {
         font-size: 2em;
         font-weight: 100;
         float: left;
       }
 
-      a{
+      a {
         display: inline-block;
         color: #ebebff;
         text-decoration: none;
 
-        :hover{
+        :hover {
           cursor: pointer;
           color: white;
         }
 
-        :active{
+        :active {
           top: 1px;
         }
       }
 
-      .remove-album{
+      .remove-album {
         position: absolute;
         display: block;
         top: 10px;
@@ -94,21 +108,123 @@ header{
         color: #394976;
         font-size: 1em;
       }
-      .remove-album:hover{
+      .remove-album:hover {
         color: #252a4b;
         cursor: pointer;
       }
-      .remove-album:active{
+      .remove-album:active {
         top: 11px;
       }
-      .remove-album:focus{
+      .remove-album:focus {
         outline: none;
       }
-
     }
-
   }
-
 }
 
-#photos{}
+#photos {
+
+  .upload-image-wrap {
+    margin: 0 auto;
+    width: 500px;
+  }
+
+  .new-image-title {
+    width: 415px;
+    display: inline-block;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    box-shadow: none;
+    font-size: 1em;
+    padding: 10px;
+    color: #343434;
+    border: solid 1px #dcdcdc;
+    transition: box-shadow 0.3s, border 0.3s;
+  }
+  .new-image-title:focus {
+    border: solid 1px #707070;
+    box-shadow: 0 0 5px 1px #969696;
+    outline: none;
+  }
+
+  .save-image-button {
+    display: inline-block;
+    margin: 0;
+    font-size: 1em;
+    color: #ebebff;
+    padding: 10px;
+    background: #5471a0;
+    border: none;
+  }
+  .save-image-button:hover {
+    cursor: pointer;
+  }
+  .save-image-button:active {
+    background: #425983;
+  }
+  .save-image-button:focus {
+    outline: none;
+  }
+
+  .selected-image {
+    display: block;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .photo {
+    position: relative;
+    display: block;
+    float: left;
+    background: #343434;
+    margin: 2px;
+    width: 200px;
+    height: 230px;
+
+    .photo-image {
+      width: inherit;
+      height: 200px;
+    }
+
+    .remove-photo {
+      position: absolute;
+      display: block;
+      top: 5px;
+      right: 5px;
+      border: none;
+      color: rgba(255, 255, 255, 0.38);
+      background: rgba(0, 0, 0, 0.26);
+      border-radius: 3px;
+      font-size: 1em;
+    }
+
+    .remove-photo:hover {
+      color: rgba(255, 255, 255, 0.71);
+      background: rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+    .remove-photo:active {
+      top: 11px;
+    }
+    .remove-photo:focus {
+      outline: none;
+    }
+
+    .photo-title {
+      color: #e8e8e8;
+      margin: 3px 3px;
+    }
+  }
+}
+
+@media screen and (min-device-width: 1024px) {
+  .content {
+    width: 85%;
+  }
+}
+
+@media screen and (device-width: 800px) {
+  .content {
+    width: 70%;
+  }
+}

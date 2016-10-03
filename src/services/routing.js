@@ -5,7 +5,7 @@ export default class Routing {
 
   constructor() {
 
-    window.addEventListener('hashchange', () => this._handleRoute());
+    window.addEventListener('hashchange', () => this.handleRoute());
     this._routes = {
       '': () => {
         insertTemplate('albums');
@@ -17,7 +17,7 @@ export default class Routing {
     };
   }
 
-  _handleRoute() {
+  handleRoute() {
     let url = decodeURI(window.location.hash);
     let hash = url.split('/')[0];
 

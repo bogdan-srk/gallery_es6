@@ -1,9 +1,23 @@
 <div id="photos">
     <div class="upload-image-wrap">
-        <input type="file" accept="image/jpeg,image/png" class="select-image-input">
+        <button class="switch-upload-file active">From file</button>
+        <button class="switch-upload-cam">From camera</button>
+        <br>
+        <br>
+        <div class="from-file">
+            <div class="image-upload">
+                <input type="file" name="file" id="file" accept="image/jpeg,image/png" class="select-image-input">
+                <label class="select-image-label" for="file">Choose an image</label>
+            </div>
+        </div>
+        <div class="from-camera" hidden>
+            <video class="capture-camera">
+            </video>
+            <button class="take-photo">Take photo</button>
+            <br>
+        </div>
         <br>
         <img src="" class="selected-image">
-        <br>
         <label>
             <input type="text" class="new-image-title" placeholder="New image title...">
         </label>

@@ -3,7 +3,6 @@ import AlbumView from './albums.view'
 
 export default class AlbumsController {
   constructor() {
-    console.log('Albums Controller');
 
     this.albumsModel = new AlbumsModel();
     this._albumView = new AlbumView();
@@ -26,7 +25,6 @@ export default class AlbumsController {
     let createInput = document.getElementsByClassName('album-create-input')[0];
 
     createButton.addEventListener('click', () => {
-      console.log(createInput.value);
       this.albumsModel.createAlbum(createInput.value).then(() => {
         createInput.value = '';
         this._renderView();

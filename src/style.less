@@ -16,12 +16,35 @@ header {
       cursor: pointer;
       color: #000000;
     }
-
     :active {
       top: 1px;
     }
   }
 
+}
+
+button {
+  display: inline-block;
+  margin: 0;
+  font-size: 1em;
+  color: #ebebff;
+  padding: 10px;
+  background: #5471a0;
+  border: none;
+}
+
+.active {
+  background: #425983;
+}
+
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  background: #425983;
+}
+button:focus {
+  outline: none;
 }
 
 .content {
@@ -124,9 +147,18 @@ header {
 
 #photos {
 
+  .switch-upload-file, .switch-upload-cam{
+    width: 47%;
+    margin: 0 1%;
+  }
+
   .upload-image-wrap {
     margin: 0 auto;
     width: 500px;
+  }
+
+  .capture-camera {
+    max-width: 500px;
   }
 
   .new-image-title {
@@ -164,6 +196,47 @@ header {
   }
   .save-image-button:focus {
     outline: none;
+  }
+
+  .image-upload {
+    //width: 126px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 1em;
+    color: #ebebff;
+    padding: 10px;
+    background: #5471a0;
+    border: none;
+
+    input.select-image-input {
+      display: block;
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+    .select-image-label {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      cursor: inherit;
+    }
+  }
+  .image-upload:hover {
+    cursor: pointer;
+  }
+  .image-upload:active {
+    background: #425983;
+  }
+
+  button.take-photo {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .selected-image {

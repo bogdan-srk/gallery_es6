@@ -3,7 +3,6 @@ import PhotosView from './photos.view'
 
 export default class PhotosController {
   constructor() {
-    console.log('Photos Controller');
 
     this.albumsModel = new AlbumsModel();
 
@@ -17,7 +16,6 @@ export default class PhotosController {
     });
   }
 
-
   _renderView() {
     let album = this.albumsModel.albumById(decodeURI(window.location.hash).split('/')[1]);
 
@@ -26,6 +24,9 @@ export default class PhotosController {
         this._setRemoveButtons();
         this._setLoadImageListener();
         this._setSaveImageListener();
+        captureCamera();
+        takePhoto();
+        setSwitchUploadListener();
       });
   }
 
@@ -76,7 +77,6 @@ export default class PhotosController {
       if (imgData.title && imgData.encoded) {
         this.albumsModel.createImage(albumId, imgData)
           .then(() => {
-            console.log(imageInput);
             imageTitleInput.value = '';
             selectedImage.setAttribute('src', '');
             this._renderView();
@@ -98,3 +98,70 @@ function getBase64Image(img) {
 
   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
+
+function captureCamera() {
+  let video = document.getElementsByClassName('capture-camera')[0];
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+  if (navigator.getUserMedia) {
+    navigator.getUserMedia({video: true},
+      (stream) => {
+        if (video.mozSrcObject !== undefined) {
+          video.mozSrcObject = stream;
+        } else {
+          video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
+        }
+        video.play();
+      },
+      (error) => {
+        console.error('An error occurred: [CODE ' + error.code + ']');
+      });
+  } else {
+    console.warn('Native device media streaming (getUserMedia) not supported in this browser.');
+  }
+}
+
+function takePhoto() {
+  let takePhotoButton = document.getElementsByClassName('take-photo')[0];
+  let video = document.getElementsByClassName('capture-camera')[0];
+  let selectedImg = document.getElementsByClassName('selected-image')[0];
+
+  takePhotoButton.addEventListener('click', () => {
+    video.pause();
+    var canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas
+      .getContext('2d')
+      .drawImage(video, 0, 0, canvas.width, canvas.height);
+    selectedImg.src = canvas.toDataURL();
+  });
+}
+
+function setSwitchUploadListener() {
+  let switchUpload = {
+    file: document.getElementsByClassName('switch-upload-file')[0],
+    cam: document.getElementsByClassName('switch-upload-cam')[0]
+  };
+  let uploadTypeDiv = {
+    file: document.getElementsByClassName('from-file')[0],
+    cam: document.getElementsByClassName('from-camera')[0]
+  };
+  let clickListener = (e) => {
+    switchUpload.file.className = 'switch-upload-file';
+    switchUpload.cam.className = 'switch-upload-cam';
+    e.target.className += ' active'
+  };
+  switchUpload.file.addEventListener('click', (e) => {
+    clickListener(e);
+    uploadTypeDiv.file.removeAttribute('hidden');
+    uploadTypeDiv.cam.setAttribute('hidden', 'hidden');
+
+  });
+  switchUpload.cam.addEventListener('click', (e) => {
+    clickListener(e);
+    uploadTypeDiv.cam.removeAttribute('hidden');
+    uploadTypeDiv.file.setAttribute('hidden', 'hidden');
+  });
+}
+
